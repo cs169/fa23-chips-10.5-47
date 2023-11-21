@@ -4,7 +4,6 @@ require 'rails_helper'
 
 describe Representative, type: :model do
   describe '.civic_api_to_representative_params' do
-    # Mock representative information from the API
     described_class.create!(title: 'Office_1', ocdid: 'ocd-division-id_1', name: 'Sam', party: 'Independent',
                             photo_url: 'example.com/photo', address: '2067 University Ave, Berkeley, CA, 94704')
     rep_info = OpenStruct.new(officials: [OpenStruct.new(name: 'Sam', party: 'Independent', photo_url:
