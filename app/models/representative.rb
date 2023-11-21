@@ -4,8 +4,8 @@ class Representative < ApplicationRecord
   has_many :news_items, dependent: :delete_all
 
   def self.civic_api_to_representative_params(rep_info)
-    rep_info.officials.flat_map do |official|
-      rep_info.offices.select { |office| office.official_indices.include?(official.index) }
+    rep_info.officials.flat_map.with_index do |official, index|
+      rep_info.offices.select { |office| office.official_indices.include?(index) }
                       .map { |office| process_official(official, office) }
     end
   end
@@ -37,16 +37,6 @@ class Representative < ApplicationRecord
   end
 
   def self.build_address(first_address)
-    street_name = check_address_lines(first_address&.line1, false)
-    street_name += check_address_lines(first_address&.line2, true)
-    street_name += check_address_lines(first_address&.line3, true)
-    "#{street_name}, #{first_address&.city}, #{first_address&.state}, #{first_address&.zip}"
-  end
-
-  def self.check_address_lines(line, comma)
-    return '' unless line
-
-    ", #{line}" if comma
-    line
+    "#{first_address&.line1}, #{first_address&.city}, #{first_address&.state}, #{first_address&.zip}"
   end
 end
