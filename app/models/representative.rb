@@ -6,7 +6,7 @@ class Representative < ApplicationRecord
   def self.civic_api_to_representative_params(rep_info)
     rep_info.officials.flat_map.with_index do |official, index|
       rep_info.offices.select { |office| office.official_indices.include?(index) }
-                      .map { |office| process_official(official, office) }
+              .map { |office| process_official(official, office) }
     end
   end
 
@@ -16,12 +16,12 @@ class Representative < ApplicationRecord
     dict['address_temp'] = build_address(official.address&.first)
 
     Representative.find_or_create_by!(
-      name: official.name,
-      ocdid: dict['ocdid_temp'],
-      title: dict['title_temp'],
-      party: dict['party_temp'],
+      name:      official.name,
+      ocdid:     dict['ocdid_temp'],
+      title:     dict['title_temp'],
+      party:     dict['party_temp'],
       photo_url: dict['photo_temp'],
-      address: dict['address_temp']
+      address:   dict['address_temp']
     )
   end
 
