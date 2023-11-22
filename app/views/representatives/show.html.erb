@@ -1,0 +1,26 @@
+<main role="main" class="container my-5">
+  <div class="row">    
+    <div class="col-2">
+      <img class="img-fluid rounded" src="<%= @representative.photo_url.nil? ? 'https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg' : @representative.photo_url %>" alt="Representative Photo">
+    </div>
+    <div class="col-10">
+      <h1><%= @representative.name %></h1>
+      <h3 class="text-black-50"><%= @representative.title %></h2>
+      <hr class="solid">
+      <div class="container">
+      <div class="row">
+          <h5 class="mr-2"><strong>OCD ID:</strong></h5> 
+          <h5><%= @representative.ocdid %></h5>
+        </div>
+        <div class="row">
+          <h5 class="mr-2"><strong>Party:</strong></h5> 
+          <h5><%= @representative.party %></h5>
+        </div>
+        <div class="row">
+          <h5 class="mr-2"><strong>Contact Address:</strong></h5> 
+          <h5><%= @representative.address %></h5> 
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
