@@ -26,8 +26,8 @@ Given("I'm on the California page") do
   visit '/state/CA'
 end
 
-When("I click Alameda County") do
-  click_link("View", match: :first)
+When('I click Alameda County') do
+  click_link('View', match: :first)
 end
 
 Then("I should see Henry C. Levy's name") do
