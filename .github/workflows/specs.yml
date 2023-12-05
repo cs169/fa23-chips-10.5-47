@@ -32,6 +32,7 @@ jobs:
           node-version: 13.14.0
       - uses: ruby/setup-ruby@v1
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: gem install bundler:2.1.4
       - run: npm install -g yarn@1.19.1
