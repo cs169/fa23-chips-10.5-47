@@ -14,8 +14,6 @@ class CampaignFinance < ApplicationRecord
     candidates.take(20)
   end
 
-  private
-
   def self.make_api_request(cycle, category)
     Faraday.new(url: BASE_URL) do |faraday|
       faraday.headers['X-API-Key'] = API_KEY

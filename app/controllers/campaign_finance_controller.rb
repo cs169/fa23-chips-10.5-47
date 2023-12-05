@@ -10,16 +10,15 @@ class CampaignFinanceController < ApplicationController
     render :search
   end
 
-  private
-
   def validate_search_parameters
     @cycle = params[:cycle]
     @category = params[:category]
 
-    unless valid_cycle?(@cycle) && valid_category?(@category)
-      flash[:alert] = 'Please select both election cycle and category.'
-      redirect_to campaign_finance_index_path and return
-    end
+    # unless valid_cycle?(@cycle) && valid_category?(@category)
+    return if valid_cycle?(@cycle) && valid_category?(@category)
+
+    flash[:alert] = 'Please select both election cycle and category.'
+    redirect_to campaign_finance_index_path and return
   end
 
   def valid_cycle?(cycle)
@@ -28,8 +27,8 @@ class CampaignFinanceController < ApplicationController
 
   def valid_category?(category)
     [
-      'Candidate Loan', 'Contribution Total', 'Debts Owed', 
-      'Disbursements Total', 'End Cash', 'Individual Total', 
+      'Candidate Loan', 'Contribution Total', 'Debts Owed',
+      'Disbursements Total', 'End Cash', 'Individual Total',
       'PAC Total', 'Receipts Total', 'Refund Total'
     ].include?(category)
   end
