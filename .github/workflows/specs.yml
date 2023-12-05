@@ -40,4 +40,8 @@ jobs:
       - run: bundle exec rake db:setup
       - run: bundle exec rake db:test:prepare
       - run: bundle exec rspec
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
       - run: bundle exec cucumber
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
