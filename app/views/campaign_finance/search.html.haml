@@ -1,0 +1,18 @@
+.container-fluid
+    .row
+        .col-md-8.offset-md-2
+            - if @top_20_candidates.present?
+                %h2.text-center.mt-4 Category: #{@category}
+                %h2.text-center Cycle: #{@cycle}
+                .table-responsive-md.pt-5
+                    %table.table.table-striped.table-hover#events
+                        %caption Top 20 Candidates
+                        %thead.thead-dark
+                            %tr
+                                %th Candidate Name
+                                %th Party
+                        %tbody
+                            - @top_20_candidates.each do |candidate|
+                                %tr
+                                    %td= candidate['name']
+                                    %td= candidate['party']
